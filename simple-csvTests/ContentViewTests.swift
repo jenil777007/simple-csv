@@ -8,7 +8,10 @@ final class ContentViewTests: XCTestCase {
         try super.setUpWithError()
         document = CSVDocument()
         document.headers = ["Test1", "Test2"]
-        document.rows = [["A", "B"], ["C", "D"]]
+        document.rows = [
+            CSVRow(cells: ["A", "B"]),
+            CSVRow(cells: ["C", "D"])
+        ]
         document.rowCount = 2
         document.columnCount = 2
     }
@@ -21,15 +24,15 @@ final class ContentViewTests: XCTestCase {
     func testDeleteRow() {
         // Initial state
         XCTAssertEqual(document.rows.count, 2)
-        XCTAssertEqual(document.rows[0], ["A", "B"])
-        XCTAssertEqual(document.rows[1], ["C", "D"])
+        XCTAssertEqual(document.rows[0], CSVRow(cells: ["A", "B"]))
+        XCTAssertEqual(document.rows[1], CSVRow(cells: ["C", "D"]))
         
         // Delete first row
         document.deleteRow(at: 0)
         
         // Verify state after deletion
         XCTAssertEqual(document.rows.count, 1)
-        XCTAssertEqual(document.rows[0], ["C", "D"])
+        XCTAssertEqual(document.rows[0], CSVRow(cells: ["C", "D"]))
         XCTAssertEqual(document.rowCount, 1)
         XCTAssertTrue(document.hasUnsavedChanges)
     }
@@ -53,22 +56,22 @@ final class ContentViewTests: XCTestCase {
         // Add new row
         document.addRow()
         
-        // Verify new row is added with empty cells
+        // Verify state after addition
         XCTAssertEqual(document.rows.count, 3)
-        XCTAssertEqual(document.rows[2], ["", ""])
+        XCTAssertEqual(document.rows[2], CSVRow(cells: ["", ""]))
         XCTAssertEqual(document.rowCount, 3)
         XCTAssertTrue(document.hasUnsavedChanges)
     }
     
     func testUpdateCell() {
         // Initial state
-        XCTAssertEqual(document.rows[0][0], "A")
+        XCTAssertEqual(document.rows[0].cells[0], "A")
         
         // Update cell
         document.updateCell(row: 0, column: 0, value: "Updated")
         
         // Verify cell is updated
-        XCTAssertEqual(document.rows[0][0], "Updated")
+        XCTAssertEqual(document.rows[0].cells[0], "Updated")
         XCTAssertTrue(document.hasUnsavedChanges)
     }
     

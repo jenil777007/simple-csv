@@ -31,8 +31,8 @@ final class CSVDocumentTests: XCTestCase {
         
         XCTAssertEqual(document.headers, ["Header1", "Header2"])
         XCTAssertEqual(document.rows.count, 2)
-        XCTAssertEqual(document.rows[0].cells, ["Value1", "Value2"])
-        XCTAssertEqual(document.rows[1].cells, ["Value3", "Value4"])
+        XCTAssertEqual(document.rows[0], CSVRow(cells: ["Value1", "Value2"]))
+        XCTAssertEqual(document.rows[1], CSVRow(cells: ["Value3", "Value4"]))
         XCTAssertEqual(document.rowCount, 2)
         XCTAssertEqual(document.columnCount, 2)
         XCTAssertFalse(document.hasUnsavedChanges)
@@ -50,9 +50,11 @@ final class CSVDocumentTests: XCTestCase {
         let saveURL = FileManager.default.temporaryDirectory.appendingPathComponent("save_test.csv")
         try document.saveCSV(to: saveURL)
         
+        // Verify saved content
         let savedContent = try String(contentsOf: saveURL, encoding: .utf8)
         XCTAssertEqual(savedContent, "Test1,Test2\nA,B\nC,D")
         
+        // Clean up
         try FileManager.default.removeItem(at: saveURL)
     }
     
@@ -64,7 +66,7 @@ final class CSVDocumentTests: XCTestCase {
         
         XCTAssertEqual(document.rowCount, 1)
         XCTAssertEqual(document.rows.count, 1)
-        XCTAssertEqual(document.rows[0].cells, ["", ""])
+        XCTAssertEqual(document.rows[0], CSVRow(cells: ["", ""]))
         XCTAssertTrue(document.hasUnsavedChanges)
     }
     
@@ -83,8 +85,8 @@ final class CSVDocumentTests: XCTestCase {
         
         XCTAssertEqual(document.rowCount, 2)
         XCTAssertEqual(document.rows.count, 2)
-        XCTAssertEqual(document.rows[0].cells, ["A", "B"])
-        XCTAssertEqual(document.rows[1].cells, ["E", "F"])
+        XCTAssertEqual(document.rows[0], CSVRow(cells: ["A", "B"]))
+        XCTAssertEqual(document.rows[1], CSVRow(cells: ["E", "F"]))
         XCTAssertTrue(document.hasUnsavedChanges)
     }
     
@@ -102,8 +104,8 @@ final class CSVDocumentTests: XCTestCase {
         
         XCTAssertEqual(document.columnCount, 2)
         XCTAssertEqual(document.headers, ["Test1", "Test2"])
-        XCTAssertEqual(document.rows[0].cells, ["A", ""])
-        XCTAssertEqual(document.rows[1].cells, ["B", ""])
+        XCTAssertEqual(document.rows[0], CSVRow(cells: ["A", ""]))
+        XCTAssertEqual(document.rows[1], CSVRow(cells: ["B", ""]))
         XCTAssertTrue(document.hasUnsavedChanges)
     }
     
@@ -121,8 +123,8 @@ final class CSVDocumentTests: XCTestCase {
         
         XCTAssertEqual(document.columnCount, 2)
         XCTAssertEqual(document.headers, ["Test1", "Test3"])
-        XCTAssertEqual(document.rows[0].cells, ["A", "C"])
-        XCTAssertEqual(document.rows[1].cells, ["D", "F"])
+        XCTAssertEqual(document.rows[0], CSVRow(cells: ["A", "C"]))
+        XCTAssertEqual(document.rows[1], CSVRow(cells: ["D", "F"]))
         XCTAssertTrue(document.hasUnsavedChanges)
     }
     
@@ -142,7 +144,28 @@ final class CSVDocumentTests: XCTestCase {
         XCTAssertTrue(document.hasUnsavedChanges)
     }
     
-    func testLoadEmptyFile() {
+    func testUpdateHeader() {
+        // Setup
+        document.headers = ["Test1", "Test2", "Test3"]
+        document.rows = [
+            CSVRow(cells: ["A", "B", "C"]),
+            CSVRow(cells: ["D", "E", "F"])
+        ]
+        document.rowCount = 2
+        document.columnCount = 3
+        document.hasUnsavedChanges = false
+        
+        // Update header
+        document.headers[1] = "Updated Header"
+        
+        // Verify
+        XCTAssertEqual(document.headers, ["Test1", "Updated Header", "Test3"])
+        XCTAssertEqual(document.columnCount, 3)
+        XCTAssertEqual(document.rows[0].cells, ["A", "B", "C"])
+        XCTAssertEqual(document.rows[1].cells, ["D", "E", "F"])
+    }
+    
+    func testLoadEmptyFile() throws {
         let emptyFileURL = FileManager.default.temporaryDirectory.appendingPathComponent("empty.csv")
         try? "".write(to: emptyFileURL, atomically: true, encoding: .utf8)
         
@@ -150,7 +173,8 @@ final class CSVDocumentTests: XCTestCase {
             XCTAssertEqual(error as? CSVError, CSVError.emptyFile)
         }
         
-        try? FileManager.default.removeItem(at: emptyFileURL)
+        // Clean up
+        try FileManager.default.removeItem(at: emptyFileURL)
     }
     
     func testSaveAndReload() throws {
@@ -175,11 +199,12 @@ final class CSVDocumentTests: XCTestCase {
         XCTAssertEqual(newDocument.headers, document.headers)
         XCTAssertEqual(newDocument.rows.count, document.rows.count)
         for i in 0..<document.rows.count {
-            XCTAssertEqual(newDocument.rows[i].cells, document.rows[i].cells)
+            XCTAssertEqual(newDocument.rows[i], document.rows[i])
         }
         XCTAssertEqual(newDocument.rowCount, document.rowCount)
         XCTAssertEqual(newDocument.columnCount, document.columnCount)
         
+        // Clean up
         try FileManager.default.removeItem(at: saveURL)
     }
     
@@ -217,26 +242,5 @@ final class CSVDocumentTests: XCTestCase {
         XCTAssertThrowsError(try document.save()) { error in
             XCTAssertEqual(error as? CSVError, CSVError.noActiveDocument)
         }
-    }
-    
-    func testUpdateHeader() {
-        // Setup
-        document.headers = ["Test1", "Test2", "Test3"]
-        document.rows = [
-            CSVRow(cells: ["A", "B", "C"]),
-            CSVRow(cells: ["D", "E", "F"])
-        ]
-        document.rowCount = 2
-        document.columnCount = 3
-        document.hasUnsavedChanges = false
-        
-        // Update header
-        document.headers[1] = "Updated Header"
-        
-        // Verify
-        XCTAssertEqual(document.headers, ["Test1", "Updated Header", "Test3"])
-        XCTAssertEqual(document.columnCount, 3)
-        XCTAssertEqual(document.rows[0].cells, ["A", "B", "C"])
-        XCTAssertEqual(document.rows[1].cells, ["D", "E", "F"])
     }
 }

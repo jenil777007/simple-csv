@@ -1,52 +1,61 @@
 import Foundation
 
-enum CSVError: LocalizedError {
+public enum CSVError: LocalizedError {
     case emptyFile
     case invalidFormat
     case permissionDenied
     case accessError
     case noActiveDocument
     
-    var errorDescription: String? {
+    public var errorDescription: String? {
         switch self {
         case .emptyFile:
-            return "The CSV file is empty"
+            return "The file is empty."
         case .invalidFormat:
-            return "Invalid CSV format"
+            return "The file has an invalid format."
         case .permissionDenied:
-            return "Permission denied. Please check file permissions"
+            return "You don't have the permission to access this file."
         case .accessError:
-            return "Unable to access the file. Please try again"
+            return "Failed to access the file."
         case .noActiveDocument:
-            return "No file is currently open"
+            return "No active CSV document."
         }
     }
 }
 
-struct CSVRow: Identifiable {
-    let id = UUID()
-    var cells: [String]
+public struct CSVRow: Identifiable, Equatable {
+    public let id = UUID()
+    public var cells: [String]
+    
+    public init(cells: [String]) {
+        self.cells = cells
+    }
+    
+    public static func == (lhs: CSVRow, rhs: CSVRow) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
 
-class CSVDocument: ObservableObject {
-    @Published var headers: [String] = []
-    @Published var rows: [CSVRow] = []
-    @Published var rowCount: Int = 0
-    @Published var columnCount: Int = 0
-    @Published var currentURL: URL?
-    @Published var hasUnsavedChanges: Bool = false
+public class CSVDocument: ObservableObject {
+    @Published public var headers: [String] = []
+    @Published public var rows: [CSVRow] = []
+    @Published public var rowCount: Int = 0
+    @Published public var columnCount: Int = 0
+    @Published public var currentURL: URL?
+    @Published public var hasUnsavedChanges: Bool = false
     
-    init() {}
+    public init() {}
     
-    func save() throws {
+    public func save() throws {
         guard let url = currentURL else {
             throw CSVError.noActiveDocument
         }
+        
         try saveCSV(to: url)
         hasUnsavedChanges = false
     }
     
-    func loadCSV(from url: URL) throws {
+    public func loadCSV(from url: URL) throws {
         guard url.startAccessingSecurityScopedResource() else {
             throw CSVError.accessError
         }
@@ -55,82 +64,61 @@ class CSVDocument: ObservableObject {
             url.stopAccessingSecurityScopedResource()
         }
         
-        do {
-            let content = try String(contentsOf: url, encoding: .utf8)
-            let lines = content.components(separatedBy: .newlines)
-                .filter { !$0.isEmpty }
-            
-            guard !lines.isEmpty else { throw CSVError.emptyFile }
-            
-            // Parse headers
-            headers = lines[0].components(separatedBy: ",")
-                .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-            columnCount = headers.count
-            
-            // Parse data rows
-            rows = lines[1...].map { line in
-                let cells = line.components(separatedBy: ",")
-                    .map { $0.trimmingCharacters(in: .whitespacesAndNewlines) }
-                // Pad row if necessary
-                let paddedCells = cells + Array(repeating: "", count: max(0, columnCount - cells.count))
-                return CSVRow(cells: paddedCells)
-            }
-            rowCount = rows.count
-            currentURL = url
-            hasUnsavedChanges = false
-        } catch let error as NSError {
-            if error.domain == NSCocoaErrorDomain && 
-               (error.code == NSFileReadNoPermissionError || 
-                error.code == NSFileReadUnknownError) {
-                throw CSVError.permissionDenied
-            }
-            throw error
+        let content = try String(contentsOf: url, encoding: .utf8)
+        let rows = content.components(separatedBy: "\n")
+        
+        if rows.isEmpty {
+            throw CSVError.emptyFile
         }
+        
+        headers = rows[0].components(separatedBy: ",")
+        self.rows = []
+        for i in 1..<rows.count {
+            let row = rows[i].components(separatedBy: ",")
+            self.rows.append(CSVRow(cells: row))
+        }
+        rowCount = rows.count - 1
+        columnCount = headers.count
     }
     
-    func saveAs(to url: URL) throws {
+    public func saveAs(to url: URL) throws {
         try saveCSV(to: url)
         currentURL = url
         hasUnsavedChanges = false
     }
     
-    internal func saveCSV(to url: URL) throws {
-        guard url.startAccessingSecurityScopedResource() else {
-            throw CSVError.accessError
-        }
+    public func saveCSV(to url: URL) throws {
+        var csvText = ""
         
-        defer {
-            url.stopAccessingSecurityScopedResource()
+        let headerLine = headers.joined(separator: ",")
+        csvText.append(headerLine + "\n")
+        
+        for row in rows {
+            let rowLine = row.cells.joined(separator: ",")
+            csvText.append(rowLine + "\n")
         }
         
         do {
-            var content = headers.joined(separator: ",") + "\n"
-            content += rows.map { $0.cells.joined(separator: ",") }.joined(separator: "\n")
-            try content.write(to: url, atomically: true, encoding: .utf8)
-        } catch let error as NSError {
-            if error.domain == NSCocoaErrorDomain && 
-               (error.code == NSFileWriteNoPermissionError || 
-                error.code == NSFileWriteUnknownError) {
-                throw CSVError.permissionDenied
-            }
-            throw error
+            try csvText.write(to: url, atomically: true, encoding: .utf8)
+        } catch {
+            throw CSVError.permissionDenied
         }
     }
     
-    func addRow() {
+    public func addRow() {
         rows.append(CSVRow(cells: Array(repeating: "", count: columnCount)))
         rowCount += 1
         hasUnsavedChanges = true
     }
     
-    func deleteRow(at index: Int) {
+    public func deleteRow(at index: Int) {
         guard index < rows.count else { return }
         rows.remove(at: index)
         rowCount -= 1
         hasUnsavedChanges = true
     }
     
-    func addColumn(name: String) {
+    public func addColumn(name: String) {
         headers.append(name)
         for i in 0..<rows.count {
             rows[i].cells.append("")
@@ -139,7 +127,7 @@ class CSVDocument: ObservableObject {
         hasUnsavedChanges = true
     }
     
-    func deleteColumn(at index: Int) {
+    public func deleteColumn(at index: Int) {
         guard index < headers.count else { return }
         headers.remove(at: index)
         for i in 0..<rows.count {
@@ -149,7 +137,7 @@ class CSVDocument: ObservableObject {
         hasUnsavedChanges = true
     }
     
-    func updateCell(row: Int, column: Int, value: String) {
+    public func updateCell(row: Int, column: Int, value: String) {
         guard row < rows.count && column < columnCount else { return }
         rows[row].cells[column] = value
         hasUnsavedChanges = true
