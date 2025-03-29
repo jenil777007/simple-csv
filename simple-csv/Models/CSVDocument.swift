@@ -56,29 +56,34 @@ public class CSVDocument: ObservableObject {
     }
     
     public func loadCSV(from url: URL) throws {
-        guard url.startAccessingSecurityScopedResource() else {
+        var content: String
+        do {
+            content = try String(contentsOf: url, encoding: .utf8)
+        } catch {
             throw CSVError.accessError
         }
         
-        defer {
-            url.stopAccessingSecurityScopedResource()
-        }
-        
-        let content = try String(contentsOf: url, encoding: .utf8)
-        let rows = content.components(separatedBy: "\n")
+        let rows = content.components(separatedBy: .newlines).filter { !$0.isEmpty }
         
         if rows.isEmpty {
             throw CSVError.emptyFile
         }
         
         headers = rows[0].components(separatedBy: ",")
+        columnCount = headers.count
+        
         self.rows = []
         for i in 1..<rows.count {
-            let row = rows[i].components(separatedBy: ",")
-            self.rows.append(CSVRow(cells: row))
+            let cells = rows[i].components(separatedBy: ",")
+            // Ensure each row has the correct number of cells
+            let paddedCells = cells.count < columnCount ? 
+                cells + Array(repeating: "", count: columnCount - cells.count) :
+                Array(cells.prefix(columnCount))
+            self.rows.append(CSVRow(cells: paddedCells))
         }
-        rowCount = rows.count - 1
-        columnCount = headers.count
+        rowCount = self.rows.count
+        currentURL = url
+        hasUnsavedChanges = false
     }
     
     public func saveAs(to url: URL) throws {
@@ -88,14 +93,11 @@ public class CSVDocument: ObservableObject {
     }
     
     public func saveCSV(to url: URL) throws {
-        var csvText = ""
-        
-        let headerLine = headers.joined(separator: ",")
-        csvText.append(headerLine + "\n")
+        // Build CSV content
+        var csvText = headers.joined(separator: ",")
         
         for row in rows {
-            let rowLine = row.cells.joined(separator: ",")
-            csvText.append(rowLine + "\n")
+            csvText.append("\n" + row.cells.joined(separator: ","))
         }
         
         do {

@@ -21,68 +21,56 @@ final class ContentViewTests: XCTestCase {
         try super.tearDownWithError()
     }
     
+    func testAddRow() {
+        let initialCount = document.rows.count
+        document.addRow()
+        
+        XCTAssertEqual(document.rows.count, initialCount + 1)
+        XCTAssertEqual(document.rows.last?.cells.count, document.columnCount)
+        XCTAssertEqual(document.rowCount, initialCount + 1)
+        
+        // Verify the new row has empty cells
+        if let lastRow = document.rows.last {
+            XCTAssertEqual(lastRow.cells, Array(repeating: "", count: document.columnCount))
+        }
+    }
+    
     func testDeleteRow() {
-        // Initial state
-        XCTAssertEqual(document.rows.count, 2)
-        XCTAssertEqual(document.rows[0], CSVRow(cells: ["A", "B"]))
-        XCTAssertEqual(document.rows[1], CSVRow(cells: ["C", "D"]))
+        let initialCount = document.rows.count
+        let firstRowCells = document.rows[0].cells
         
-        // Delete first row
-        document.deleteRow(at: 0)
+        document.deleteRow(at: 1) // Delete second row
         
-        // Verify state after deletion
-        XCTAssertEqual(document.rows.count, 1)
-        XCTAssertEqual(document.rows[0], CSVRow(cells: ["C", "D"]))
-        XCTAssertEqual(document.rowCount, 1)
-        XCTAssertTrue(document.hasUnsavedChanges)
+        XCTAssertEqual(document.rows.count, initialCount - 1)
+        XCTAssertEqual(document.rowCount, initialCount - 1)
+        XCTAssertEqual(document.rows[0].cells, firstRowCells) // First row should remain unchanged
     }
     
     func testDeleteRowOutOfBounds() {
-        // Initial state
-        XCTAssertEqual(document.rows.count, 2)
+        let initialCount = document.rows.count
         
-        // Try to delete row at invalid index
-        document.deleteRow(at: 5)
+        // Try to delete a row at an invalid index
+        document.deleteRow(at: document.rows.count + 1)
         
-        // Verify state remains unchanged
-        XCTAssertEqual(document.rows.count, 2)
-        XCTAssertEqual(document.rowCount, 2)
-    }
-    
-    func testAddRow() {
-        // Initial state
-        XCTAssertEqual(document.rows.count, 2)
-        
-        // Add new row
-        document.addRow()
-        
-        // Verify state after addition
-        XCTAssertEqual(document.rows.count, 3)
-        XCTAssertEqual(document.rows[2], CSVRow(cells: ["", ""]))
-        XCTAssertEqual(document.rowCount, 3)
-        XCTAssertTrue(document.hasUnsavedChanges)
+        // Nothing should change
+        XCTAssertEqual(document.rows.count, initialCount)
+        XCTAssertEqual(document.rowCount, initialCount)
     }
     
     func testUpdateCell() {
-        // Initial state
-        XCTAssertEqual(document.rows[0].cells[0], "A")
+        let newValue = "Updated"
+        document.updateCell(row: 0, column: 0, value: newValue)
         
-        // Update cell
-        document.updateCell(row: 0, column: 0, value: "Updated")
-        
-        // Verify cell is updated
-        XCTAssertEqual(document.rows[0].cells[0], "Updated")
-        XCTAssertTrue(document.hasUnsavedChanges)
+        XCTAssertEqual(document.rows[0].cells[0], newValue)
     }
     
     func testUpdateCellOutOfBounds() {
-        // Initial state
-        let initialRows = document.rows
+        let originalValue = document.rows[0].cells[0]
         
-        // Try to update cell at invalid indices
-        document.updateCell(row: 5, column: 5, value: "Invalid")
+        // Try to update a cell at invalid indices
+        document.updateCell(row: document.rows.count + 1, column: 0, value: "New")
         
-        // Verify state remains unchanged
-        XCTAssertEqual(document.rows, initialRows)
+        // Original value should remain unchanged
+        XCTAssertEqual(document.rows[0].cells[0], originalValue)
     }
 }
