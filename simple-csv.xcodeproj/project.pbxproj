@@ -1,0 +1,546 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		643A5D622D981EC40097482C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 643A5D482D981EBF0097482C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 643A5D4F2D981EC00097482C;
+			remoteInfo = "simple-csv";
+		};
+		643A5D6C2D981EC40097482C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 643A5D482D981EBF0097482C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 643A5D4F2D981EC00097482C;
+			remoteInfo = "simple-csv";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		643A5D502D981EC00097482C /* simple-csv.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "simple-csv.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		643A5D612D981EC40097482C /* simple-csvTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "simple-csvTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		643A5D6B2D981EC40097482C /* simple-csvUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "simple-csvUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		643A5D522D981EC00097482C /* simple-csv */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "simple-csv";
+			sourceTree = "<group>";
+		};
+		643A5D642D981EC40097482C /* simple-csvTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "simple-csvTests";
+			sourceTree = "<group>";
+		};
+		643A5D6E2D981EC40097482C /* simple-csvUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "simple-csvUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		643A5D4D2D981EC00097482C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643A5D5E2D981EC40097482C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643A5D682D981EC40097482C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		643A5D472D981EBF0097482C = {
+			isa = PBXGroup;
+			children = (
+				643A5D522D981EC00097482C /* simple-csv */,
+				643A5D642D981EC40097482C /* simple-csvTests */,
+				643A5D6E2D981EC40097482C /* simple-csvUITests */,
+				643A5D512D981EC00097482C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		643A5D512D981EC00097482C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				643A5D502D981EC00097482C /* simple-csv.app */,
+				643A5D612D981EC40097482C /* simple-csvTests.xctest */,
+				643A5D6B2D981EC40097482C /* simple-csvUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		643A5D4F2D981EC00097482C /* simple-csv */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 643A5D752D981EC40097482C /* Build configuration list for PBXNativeTarget "simple-csv" */;
+			buildPhases = (
+				643A5D4C2D981EC00097482C /* Sources */,
+				643A5D4D2D981EC00097482C /* Frameworks */,
+				643A5D4E2D981EC00097482C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				643A5D522D981EC00097482C /* simple-csv */,
+			);
+			name = "simple-csv";
+			packageProductDependencies = (
+			);
+			productName = "simple-csv";
+			productReference = 643A5D502D981EC00097482C /* simple-csv.app */;
+			productType = "com.apple.product-type.application";
+		};
+		643A5D602D981EC40097482C /* simple-csvTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 643A5D782D981EC40097482C /* Build configuration list for PBXNativeTarget "simple-csvTests" */;
+			buildPhases = (
+				643A5D5D2D981EC40097482C /* Sources */,
+				643A5D5E2D981EC40097482C /* Frameworks */,
+				643A5D5F2D981EC40097482C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				643A5D632D981EC40097482C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				643A5D642D981EC40097482C /* simple-csvTests */,
+			);
+			name = "simple-csvTests";
+			packageProductDependencies = (
+			);
+			productName = "simple-csvTests";
+			productReference = 643A5D612D981EC40097482C /* simple-csvTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		643A5D6A2D981EC40097482C /* simple-csvUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 643A5D7B2D981EC40097482C /* Build configuration list for PBXNativeTarget "simple-csvUITests" */;
+			buildPhases = (
+				643A5D672D981EC40097482C /* Sources */,
+				643A5D682D981EC40097482C /* Frameworks */,
+				643A5D692D981EC40097482C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				643A5D6D2D981EC40097482C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				643A5D6E2D981EC40097482C /* simple-csvUITests */,
+			);
+			name = "simple-csvUITests";
+			packageProductDependencies = (
+			);
+			productName = "simple-csvUITests";
+			productReference = 643A5D6B2D981EC40097482C /* simple-csvUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		643A5D482D981EBF0097482C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					643A5D4F2D981EC00097482C = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					643A5D602D981EC40097482C = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 643A5D4F2D981EC00097482C;
+					};
+					643A5D6A2D981EC40097482C = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 643A5D4F2D981EC00097482C;
+					};
+				};
+			};
+			buildConfigurationList = 643A5D4B2D981EBF0097482C /* Build configuration list for PBXProject "simple-csv" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 643A5D472D981EBF0097482C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 643A5D512D981EC00097482C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				643A5D4F2D981EC00097482C /* simple-csv */,
+				643A5D602D981EC40097482C /* simple-csvTests */,
+				643A5D6A2D981EC40097482C /* simple-csvUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		643A5D4E2D981EC00097482C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643A5D5F2D981EC40097482C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643A5D692D981EC40097482C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		643A5D4C2D981EC00097482C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643A5D5D2D981EC40097482C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		643A5D672D981EC40097482C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		643A5D632D981EC40097482C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 643A5D4F2D981EC00097482C /* simple-csv */;
+			targetProxy = 643A5D622D981EC40097482C /* PBXContainerItemProxy */;
+		};
+		643A5D6D2D981EC40097482C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 643A5D4F2D981EC00097482C /* simple-csv */;
+			targetProxy = 643A5D6C2D981EC40097482C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		643A5D732D981EC40097482C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		643A5D742D981EC40097482C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		643A5D762D981EC40097482C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "simple-csv/simple_csv.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"simple-csv/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nilcutt.simple-csv";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		643A5D772D981EC40097482C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = "simple-csv/simple_csv.entitlements";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"simple-csv/Preview Content\"";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nilcutt.simple-csv";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		643A5D792D981EC40097482C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nilcutt.simple-csvTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/simple-csv.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/simple-csv";
+			};
+			name = Debug;
+		};
+		643A5D7A2D981EC40097482C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 14.7;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nilcutt.simple-csvTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/simple-csv.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/simple-csv";
+			};
+			name = Release;
+		};
+		643A5D7C2D981EC40097482C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nilcutt.simple-csvUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "simple-csv";
+			};
+			name = Debug;
+		};
+		643A5D7D2D981EC40097482C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "nilcutt.simple-csvUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = "simple-csv";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		643A5D4B2D981EBF0097482C /* Build configuration list for PBXProject "simple-csv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643A5D732D981EC40097482C /* Debug */,
+				643A5D742D981EC40097482C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		643A5D752D981EC40097482C /* Build configuration list for PBXNativeTarget "simple-csv" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643A5D762D981EC40097482C /* Debug */,
+				643A5D772D981EC40097482C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		643A5D782D981EC40097482C /* Build configuration list for PBXNativeTarget "simple-csvTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643A5D792D981EC40097482C /* Debug */,
+				643A5D7A2D981EC40097482C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		643A5D7B2D981EC40097482C /* Build configuration list for PBXNativeTarget "simple-csvUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				643A5D7C2D981EC40097482C /* Debug */,
+				643A5D7D2D981EC40097482C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 643A5D482D981EBF0097482C /* Project object */;
+}
