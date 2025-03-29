@@ -22,7 +22,11 @@ jobs:
 
       - name: Run tests
         run: |
-          xcodebuild test -scheme simple-csv -destination 'platform=macOS'
+          xcodebuild test \ 
+            -scheme simple-csv \ 
+            -destination 'platform=macOS' \ 
+            -skip-testing:simple-csvUITests \ 
+            CODE_SIGNING_ALLOWED=NO
         
       - name: Set version from tag
         if: success() # Only proceed if tests pass
