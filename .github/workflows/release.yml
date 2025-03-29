@@ -8,6 +8,7 @@ on:
 jobs:
   test-and-release:
     runs-on: macos-latest
+    timeout-minutes: 15
     permissions:
       contents: write # Needed for creating releases
     
